@@ -1,7 +1,7 @@
 name: practica-github-actions_workflow.yaml
 on:
   push:
-    branches
+    branches:
       - main
 jobs:
   Linter_job:

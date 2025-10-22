@@ -38,14 +38,19 @@ jobs:
         run: npm install
 
       - name: Executar Cypress
+        id: cypress
         continue-on-error: true
-        run: |
-          npm run build 
-          npm run start &
-          npx wait-on http://localhost:3000
-          npm run cypress > result.txt
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+          command: npm run cypress 
 
       - name: Creacio artefacte
+        run: echo "${{ steps.cypress.outcome }}" > result.txt
+
+      - name: Guardar artefacte
         uses: actions/upload-artifact@v4
         with:
           name: cypress-result

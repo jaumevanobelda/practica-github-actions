@@ -9,7 +9,7 @@ runs:
     shell: bash
     run: |
 
-      if[ "${{ inputs.cypress_outcome }}" = "succes" ]; then 
+      if [ "${{ inputs.cypress_outcome }}" = "success" ]; then 
         badge="![Cypress Tests](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)"
       else
         badge="![Cypress Tests](https://img.shields.io/badge/test-failure-red)"
@@ -18,6 +18,6 @@ runs:
       if grep -q "RESULTAT DELS ÚLTIMS TESTS" README.md; then
         sed -i "s|\(RESULTAT DELS ÚLTIMS TESTS\).*|\1 $badge|" README.md
       else
-          echo -e "\nRESULTAT DELS ÚLTIMS TESTS $badge" >> README.md
+        echo -e "\nRESULTAT DELS ÚLTIMS TESTS $badge" >> README.md
       fi
 

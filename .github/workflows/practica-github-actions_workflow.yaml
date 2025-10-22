@@ -40,7 +40,7 @@ jobs:
       - name: Executar Cypress
         continue-on-error: true
         run: |
-          npm run build &
+          npm run build 
           npm run start &
           npx wait-on http://localhost:3000
           npm run cypress > result.txt

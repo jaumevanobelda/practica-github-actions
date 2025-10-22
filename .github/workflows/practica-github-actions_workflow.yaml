@@ -71,7 +71,7 @@ jobs:
 
       - name: Generar output
         id: cypress_outcome
-        run: ::set-output name=cypress_outcome::$(cat result.txt)
+        run: echo "::set-output name=cypress_outcome::$(cat result.txt)"
 
       - name: Afegir badge
         uses: ./.github/actions/add-badge-readme

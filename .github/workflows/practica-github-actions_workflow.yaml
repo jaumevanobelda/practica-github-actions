@@ -49,6 +49,8 @@ jobs:
 
       - name: Creacio artefacte
         run: echo "${{ steps.cypress.outcome }}" > result.txt
+
+      - name: Guardar artefacte
         uses: actions/upload-artifact@v4
         with:
           name: cypress-result

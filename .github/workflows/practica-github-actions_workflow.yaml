@@ -1,4 +1,4 @@
-name:practica-github-actions_workflow.yaml
+name: practica-github-actions_workflow.yaml
 on:
   push:
     branches
@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: latest
-          
+
       - name: Instalar dependencies
         run: npm install
 

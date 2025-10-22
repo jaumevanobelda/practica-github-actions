@@ -9,7 +9,7 @@ runs:
     shell: bash
     run: |
 
-      if[ "${{ inputs.cypress_outcome }}" = "succes" ]; then
+      if[ "${{ inputs.cypress_outcome }}" = "succes" ]; then 
         badge="![Cypress Tests](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)"
       else
         badge="![Cypress Tests](https://img.shields.io/badge/test-failure-red)"

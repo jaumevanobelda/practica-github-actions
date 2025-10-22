@@ -1,0 +1,23 @@
+name: "Add badge"
+inputs:
+  cypress_outcome:
+    required: true
+runs:
+  using: "composite"
+  steps:
+  - name: Badge 
+    shell: bash
+    run: |
+
+      if[ "${{ inputs.cypress_outcome }}" = "succes" ]; then
+        badge="![Cypress Tests](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)"
+      else
+        badge="![Cypress Tests](https://img.shields.io/badge/test-failure-red)"
+      fi
+
+      if grep -q "RESULTAT DELS ÚLTIMS TESTS" README.md; then
+        sed -i "s|\(RESULTAT DELS ÚLTIMS TESTS\).*|\1 $badge|" README.md
+      else
+          echo -e "\nRESULTAT DELS ÚLTIMS TESTS $badge" >> README.md
+      fi
+

@@ -55,3 +55,33 @@ jobs:
         with:
           name: cypress-result
           path: result.txt
+
+  Add_badge_job:
+    name: Badge
+    runs-on: ubuntu-latest
+    needs: Cypress_job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Descargar artefacte
+        uses: actions/download-artifact@v4
+        with:
+          name: cypress-result
+
+      - name: Generar output
+        id: cypress_outcome
+        run: ::set-output name=cypress_outcome::$(cat result.txt)
+
+      - name: Afegir badge
+        uses: ./.github/actions/add-badge-readme
+        with:
+          cypress_outcome: ${{ steps.cypress_outcome.outputs.cypress_outcome }}
+
+      - name: Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Actualitzat badge readme "
+          git push

@@ -38,9 +38,9 @@ jobs:
         run: npm install
 
       - name: Executar Cypress
-        id: cypress
         continue-on-error: true
         run: |
+          npm run build &
           npm run start &
           npx wait-on http://localhost:3000
           npm run cypress > result.txt

@@ -1,0 +1,23 @@
+name:practica-github-actions_workflow.yaml
+on:
+  push:
+    branches
+      - main
+jobs:
+  Linter_job:
+    name: Execucio Linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Configurar node
+        uses: actions/setup-node@v6
+        with:
+          node-version: latest
+          
+      - name: Instalar dependencies
+        run: npm install
+
+      - name: Executar Linter
+        run: npm run lint

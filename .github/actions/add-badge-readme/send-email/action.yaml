@@ -1,0 +1,20 @@
+name: "Enviar notificacio"
+inputs:
+  email:
+    required: true
+  password:
+    required: true
+  workflow_name:
+    required: true
+  linter_result:
+    required: true
+  cypress_result:
+    required: true
+  badge_result:
+    required: true
+  deploy_result:
+    required: true
+
+runs:
+  using: "node20"
+  main: "index.js"

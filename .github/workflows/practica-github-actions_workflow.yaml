@@ -99,4 +99,25 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}          
           vercel-org-id: ${{ secrets.VERCEL_USER_ID }}        
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./                              
+          working-directory: ./
+
+  Notification_job:
+    name: Enviar notificacio
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [Linter_job, Cypress_job, Add_badge_job, Deploy_job]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Enviar correu 
+        uses: ./.github/actions/send-email
+        with:
+          email: ${{ secrets.EMAIL }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          workflow_name: nom_repositori_workflow
+          linter_result: ${{ needs.Linter_job.result }}
+          cypress_result: ${{ needs.Cypress_job.result }}
+          badge_result: ${{ needs.Add_badge_job.result }}
+          deploy_result: ${{ needs.Deploy_job.result }}

@@ -111,6 +111,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Instalar dependencies 
+        run: npm install
+        working-directory: ./.github/actions/send-email
+
       - name: Enviar correu 
         uses: ./.github/actions/send-email
         with:
